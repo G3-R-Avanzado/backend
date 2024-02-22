@@ -3,7 +3,7 @@ import { z } from "zod";
 export const registerSchema = z.object({
   username: z
     .string({ required_error: "El nombre de usuario es requerido" })
-    .min(8)
+    .min(7)
     .max(50),
     
   email: z.string({ required_error: "El email es requerido" }).email({
