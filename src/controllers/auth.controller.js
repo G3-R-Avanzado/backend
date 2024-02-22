@@ -113,3 +113,8 @@ export const verifyToken = async (req, res) => {
     });
   });
 };
+
+export const getUsers = async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+};

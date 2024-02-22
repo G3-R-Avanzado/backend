@@ -5,6 +5,7 @@ import {
   logout,
   profile,
   verifyToken,
+  getUsers,
 } from "../controllers/auth.controller.js";
 import {authRequired} from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
@@ -21,5 +22,7 @@ router.post("/logout", logout);
 router.get("/profile",authRequired, profile);
 
 router.get("/verify", verifyToken)
+
+router.get("/users",authRequired, getUsers);
 
 export default router;
