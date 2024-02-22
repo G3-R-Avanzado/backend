@@ -1,9 +1,11 @@
 import app from "./app.js";
 import { connectDB } from "./db.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 connectDB();
 
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 app.get("/api", (req, res) => {
   const hmlResponse = `
@@ -20,6 +22,6 @@ app.get("/api", (req, res) => {
 });
 
 //asigno un puerto para que escuche el servidor
-app.listen(port, () => {
-  console.log(`server on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`server on port ${PORT}`);
 });
