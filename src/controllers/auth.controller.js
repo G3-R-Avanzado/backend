@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const register = async (req, res) => {
-  const { username, email, rol, picture, password } = req.body;
+  const {name, username, email, rol, picture, password } = req.body;
 
   try {
     const userEmailFound = await User.findOne({ email });
@@ -16,6 +16,7 @@ export const register = async (req, res) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
     const newUser = new User({
+      name,
       username,
       email,
       rol,
@@ -31,6 +32,7 @@ export const register = async (req, res) => {
 
     res.json({
       id: userSaved._id,
+      name: userSaved.name,
       username: userSaved.username,
       email: userSaved.email,
       rol: userSaved.rol,
