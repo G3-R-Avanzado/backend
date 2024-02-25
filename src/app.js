@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import authRoutes from "../src/routes/auth.routes.js";
-
+import categoriesRoutes from "../src/routes/category.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -19,6 +19,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", authRoutes);
-
+app.use("/api", categoriesRoutes);
 
 export default app;
