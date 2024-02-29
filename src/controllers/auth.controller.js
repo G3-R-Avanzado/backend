@@ -19,8 +19,8 @@ export const register = async (req, res) => {
       name,
       username,
       email,
-      rol,
-      picture,
+      rol: "customer",
+      picture: "aqui va la url de la imagen del usuario",
       password: passwordHash,
     });
 

@@ -22,12 +22,10 @@ const userSchema = new mongoose.Schema(
     rol: {
       type: String,
       trim: true,
-      enum:["customer"]
     },
     picture: {
       type: String,
       trim: true,
-      enum:["aqui va la url de la imagen del usuario"]
     },
     password: {
       type: String,
