@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name:{
-      type:String,
-      required:true,
-      trim:true,
+    name: {
+      type: String,
+      required: true,
+      trim: true,
     },
     username: {
       type: String,
@@ -21,12 +21,13 @@ const userSchema = new mongoose.Schema(
     },
     rol: {
       type: String,
-      required: true,
       trim: true,
+      enum:["customer"]
     },
     picture: {
       type: String,
       trim: true,
+      enum:["aqui va la url de la imagen del usuario"]
     },
     password: {
       type: String,
