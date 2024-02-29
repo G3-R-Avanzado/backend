@@ -10,7 +10,6 @@ export const registerSchema = z.object({
   email: z.string({ required_error: "El email es requerido" }).email({
     message: "Email inválido",
   }),
-  rol: z.string({ required_error: "El rol es requerido" }),
   password: z
     .string({ required_error: "El password es requerido" })
     .min(8, { message: "El password debe tener al menos 8 caracteres" }),
