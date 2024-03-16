@@ -24,7 +24,6 @@ Usuario de prueba:
 "password": "g3-admin"
 }
 ```
-
 <p>
 Este usuario tiene el rol de "admin" y se puede usar para las pruebas en la creacion del login.
 </p>
@@ -41,7 +40,6 @@ Este usuario tiene el rol de "admin" y se puede usar para las pruebas en la crea
   "updatedAt": "2024-02-29T01:46:44.495Z"
 }
 ```
-
 ```javascript
 {
 "email" : "g3admin@gmail.com",
