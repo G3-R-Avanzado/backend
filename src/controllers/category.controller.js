@@ -20,11 +20,11 @@ export const getCategory = async (req, res) => {
 };
 
 export const createCategory = async (req, res) => {
-  const { name, subcateogories } = req.body;
+  const { name, subcategories } = req.body;
   try {
     const category = new Category({
       name,
-      subcateogories,
+      subcategories,
     });
     const categorySaved = await category.save();
     res.json(categorySaved);
