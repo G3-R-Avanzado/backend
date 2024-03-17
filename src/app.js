@@ -19,6 +19,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", authRoutes);
-app.use("/api", categoriesRoutes);
+app.use("/api/categories", categoriesRoutes);
 
 export default app;

@@ -10,8 +10,8 @@ import { categorySchema } from "../schemas/category.schema.js";
 
 const router = Router();
 
-router.get("/categories", getCategories);
-router.get("/category/:id", getCategory);
+router.get("/", getCategories);
+router.get("/:id", getCategory);
 router.post("/create", validateSchema(categorySchema), createCategory);
 router.delete("/delete/:id", deleteCategory);
 
