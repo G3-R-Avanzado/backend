@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/categories", getCategories);
 router.get("/category/:id", getCategory);
-router.post("/create-category", validateSchema(categorySchema), createCategory);
-router.delete("/delte-categoy/:id", deleteCategory);
+router.post("/create", validateSchema(categorySchema), createCategory);
+router.delete("/delete/:id", deleteCategory);
 
 export default router;
