@@ -5,6 +5,8 @@ Este backend está realizado con Mongo DB, express, y Node js.
 Se irán cargando nuevas funcionalidades y modificando las existentes a medida que el proyecto lo requiera.
 </p>
 
+## <<<<<<<<<<USUARIOS>>>>>>>>>> 
+
 ### Login:
 
 <p>
@@ -46,6 +48,16 @@ Este usuario tiene el rol de "admin" y se puede usar para las pruebas en la crea
 "password": "g3-admin"
 }
 ```
+
+### Logout:
+
+<p>
+Url que deberas usar para el deslogeo de usuarios. Devuelve el msj: "Sesion cerrada"
+</p>
+
+`https://backend-o1tb.onrender.com/api/logout`
+
+
 
 ### Register:
 
@@ -101,3 +113,30 @@ Url que deberas usar para eliminar un usuario, recordá usar el metodo delete y 
 </p>
 
 `https://backend-o1tb.onrender.com/api/users/aqui-el-id-de-usuario`
+
+
+
+## <<<<<<<<<<CATEGORÍAS>>>>>>>>>>
+
+<p>
+  Las rutas para crear categoría, traer 1 categoría y borrar una categoría serán de uso exclusivo de los administradores!.
+</p>
+
+### Obtener listado de categorías
+
+`https://backend-o1tb.onrender.com/api/categories`
+
+
+### Obtener una categoría
+
+`https://backend-o1tb.onrender.com/api/categories/id-categoria`
+
+
+### Crear una nueva categoría
+
+`https://backend-o1tb.onrender.com/api/categories/create`
+
+### Eliminar una categoría
+
+`https://backend-o1tb.onrender.com/api/categories/delete/id-categoria`
+
