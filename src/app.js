@@ -11,6 +11,7 @@ app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
+    sameSite: "none",
   })
 );
 //me permite ver las peticiones que llegan al servidor
