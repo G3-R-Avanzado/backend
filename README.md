@@ -5,7 +5,7 @@ Este backend está realizado con Mongo DB, express, y Node js.
 Se irán cargando nuevas funcionalidades y modificando las existentes a medida que el proyecto lo requiera.
 </p>
 
-## <<<<<<<<<<USUARIOS>>>>>>>>>> 
+## <<<<<<<<<<USUARIOS>>>>>>>>>>
 
 ### Login:
 
@@ -139,4 +139,24 @@ Url que deberas usar para eliminar un usuario, recordá usar el metodo delete y 
 ### Eliminar una categoría
 
 `https://backend-o1tb.onrender.com/api/categories/delete/id-categoria`
+
+<p>
+Estructura de cada categoría
+</p>
+
+```javascript
+{
+    name: "Electrónica",
+    subcategories: [
+      "Celulares y smartphones",
+      "Computadoras",
+      "Televisores",
+      "Consolas de videojuegos",
+      "Audio y sonido",
+      "Cámaras y fotografía",
+      "Electrodomésticos",
+      "Otros artículos electrónicos"
+    ]
+  }
+```
 
