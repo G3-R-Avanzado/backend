@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
 export const register = async (req, res) => {
-  const {name, username, email, rol, picture, password } = req.body;
+  const { name, username, email, rol, picture, password } = req.body;
 
   try {
     const userEmailFound = await User.findOne({ email });
@@ -59,7 +59,7 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id });
 
-    res.cookie("token", token, {expires: new Date(Date.now() + 8 * 3600000)});
+    res.cookie("token", token, { sameSite: "none" });
 
     res.json({
       id: userFound._id,
@@ -73,7 +73,6 @@ export const login = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
 
 export const logout = (req, res) => {
   res.cookie("token", "", { expires: new Date(0) });
@@ -94,8 +93,6 @@ export const profile = async (req, res) => {
   });
 };
 
-
-
 //la funcion verifyToken verifica que el token recibido sea valido y que el usuario exista en la base de datos y devuelve los datos del usuario
 
 export const verifyToken = async (req, res) => {
@@ -112,7 +109,6 @@ export const verifyToken = async (req, res) => {
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,
-      
     });
   });
 };
@@ -126,4 +122,4 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
   await User.findByIdAndDelete(id);
   res.json("Usuario eliminado");
-}
+};
