@@ -59,7 +59,7 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id });
 
-    res.cookie("token", token, { sameSite: "none", secure: true, httpOnly: true});
+    // res.cookie("token", token, { sameSite: "none", secure: true, httpOnly: true});
 
     res.json({
       id: userFound._id,
@@ -68,6 +68,7 @@ export const login = async (req, res) => {
       rol: userFound.rol,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
+      token,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
