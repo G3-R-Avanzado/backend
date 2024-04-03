@@ -125,6 +125,3 @@ export const deleteUser = async (req, res) => {
   res.json("Usuario eliminado");
 };
 
-export const welcome = async (req, res) =>{
-  res.status(200).json("Bienvenidos a TucuLibre Api!")
-}
