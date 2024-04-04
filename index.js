@@ -7,7 +7,7 @@ connectDB();
 
 const PORT = process.env.PORT || 4000;
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   const hmlResponse = `
     <hml>
         <head>
