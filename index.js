@@ -5,7 +5,9 @@ dotenv.config();
 
 connectDB();
 
-const PORT = process.env.PORT || 4000;
+// const PORT = process.env.PORT || 4000;
+
+app.set("port", process.env.PORT || 5050);
 
 app.get("/", (req, res) => {
   const hmlResponse = `
