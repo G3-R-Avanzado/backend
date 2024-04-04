@@ -21,8 +21,8 @@ app.get("/", (req, res) => {
   res.send(htmlResponse);
 });
 
-app.get("/api", (req, res) => {
-  res.status(200).json("Bienvenidos api")
+app.get("*", (req, res) => {
+  res.status(404).send("pagina no encontrada")
 });
 
 //asigno un puerto para que escuche el servidor
