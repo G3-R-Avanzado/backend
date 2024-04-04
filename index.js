@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
   res.send(htmlResponse);
 });
 
-app.get("/Prueba", (req, res)=>{
-  res.status(200).json("Prueba de endPoint")
-})
-
 //asigno un puerto para que escuche el servidor
 app.listen(PORT, () => {
   console.log(`server on port ${PORT}`);
