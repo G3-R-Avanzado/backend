@@ -8,7 +8,7 @@ connectDB();
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req, res) => {
-  const hmlResponse = `
+  const htmlResponse = `
     <hml>
         <head>
             <title>Clon MELI</title>
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
         </body>
     </html>
     `;
-  res.send(hmlResponse);
+  res.send(htmlResponse);
 });
 
 //asigno un puerto para que escuche el servidor
