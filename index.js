@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
   res.send(htmlResponse);
 });
 
-app.get("*", (req, res) => {
-  res.status(404).send("pagina no encontrada")
-});
-
 //asigno un puerto para que escuche el servidor
 app.listen(PORT, () => {
   console.log(`server on port ${PORT}`);
