@@ -20,7 +20,7 @@ export const register = async (req, res) => {
       username,
       email,
       rol: "customer",
-      picture: "aqui va la url de la imagen del usuario",
+      picture: picture,
       password: passwordHash,
     });
 
@@ -28,7 +28,7 @@ export const register = async (req, res) => {
 
     const token = await createAccessToken({ id: userSaved._id });
 
-    res.cookie("token", token);
+    //res.cookie("token", token);
 
     res.json({
       id: userSaved._id,
@@ -36,6 +36,7 @@ export const register = async (req, res) => {
       username: userSaved.username,
       email: userSaved.email,
       rol: userSaved.rol,
+      token,
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
     });
