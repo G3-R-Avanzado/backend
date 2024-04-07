@@ -5,7 +5,8 @@ import {
     getStatus,
     updatePublication,
     getPublicationByStatus,
-    getPublicationByUser
+    getPublicationByUser,
+    getPublicationFilter
 } from "../controllers/publication.controller.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 import { publicationSchema } from "../schemas/publication.schema.js";
@@ -20,5 +21,7 @@ router.get("/getall/user/:_id", getPublicationByUser);
 
 router.get("/status", getStatus);
 router.put("/update", validateSchema(publicationSchema), updatePublication)
+router.get("/get/filter/:descriptionParam?/:pageParam/:limitPageParam", getPublicationFilter)
+
 
 export default router;

@@ -103,7 +103,6 @@ export const getPublicationByStatus = async (req, res)=>{
 export const getPublicationByUser = async (req, res)=>{
     try {
         const {_id} = req.params
-        console.log(_id)
 
         const userDB = await User.findById(_id)
         if(!userDB) return res.status(404).json("Usuario no encontrado");
@@ -113,6 +112,24 @@ export const getPublicationByUser = async (req, res)=>{
         res.status(200).json(pubication)
     } catch (error) {
         res.status(404).json("Error al obtener las publicaciones por estado");
+    }
+}
+
+export const getPublicationFilter = async (req, res) =>{
+    try {
+        const {descriptionParam, pageParam, limitPageParam} = req.params;
+
+        const description = descriptionParam || "";
+        const page = pageParam || 0;
+        const limitPage = limitPageParam || 0;
+
+        const publications = await Publication.find({description: {$regex: description, $options: 'i'}})
+                                                .skip(page)
+                                                .limit(limitPage);
+                             
+        res.status(200).json(publications)
+    } catch (error) {
+        
     }
 }
 
