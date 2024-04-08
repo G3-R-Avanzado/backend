@@ -20,12 +20,15 @@ router.post("/login",validateSchema(loginSchema), login);
 
 router.post("/logout", logout);
 
-router.get("/profile",authRequired, profile);
+router.get("/profile", profile);
+//router.get("/profile",authRequired, profile);
 
 router.get("/verify", verifyToken)
 
-router.get("/users",authRequired, getUsers);
+router.get("/users", getUsers);
+//router.get("/users",authRequired, getUsers);
 
-router.delete("/users/:id",authRequired, deleteUser );
+router.delete("/users/:id", deleteUser );
+//router.delete("/users/:id",authRequired, deleteUser );
 
 export default router;
