@@ -37,7 +37,6 @@ export const createPublication = async (req, res) => {
     }
 }
 
-
 export const updatePublication = async (req, res) => {
     try {
         const publicationUpdate = req.body;
@@ -126,12 +125,30 @@ export const getPublicationFilter = async (req, res) =>{
         const publications = await Publication.find({description: {$regex: description, $options: 'i'}})
                                                 .skip(page)
                                                 .limit(limitPage);
-                             
         res.status(200).json(publications)
     } catch (error) {
         
     }
 }
+
+export const updateStatus = async (req, res) => {
+    const {status, id} = req.params;
+    console.log({status, id});
+    try {
+        const publicationDB = await Publication.findById(id)
+        if(!publicationDB) return res.status(404).json("Publicacion no encontrada");
+
+        const statusDB = await Status.find({description: status})
+        if(!status) return res.status(404).json("Estado no encontrado");
+
+        publicationDB.status = statusDB._id;
+        publicationDB.save()
+
+        return res.status(200).json(publicationDB)
+    } catch (error) {
+        res.status(404).json("Error al actualizar el estado");
+    }
+} 
 
 //#endregion
 

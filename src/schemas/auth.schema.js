@@ -6,7 +6,6 @@ export const registerSchema = z.object({
     .string({ required_error: "El nombre de usuario es requerido" })
     .min(7)
     .max(50),
-
   email: z.string({ required_error: "El email es requerido" }).email({
     message: "Email inválido",
   }),

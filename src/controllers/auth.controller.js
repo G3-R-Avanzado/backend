@@ -28,8 +28,6 @@ export const register = async (req, res) => {
 
     const token = await createAccessToken({ id: userSaved._id });
 
-    //res.cookie("token", token);
-
     res.json({
       id: userSaved._id,
       name: userSaved.name,
@@ -128,3 +126,26 @@ export const deleteUser = async (req, res) => {
   res.json("Usuario eliminado");
 };
 
+export const updateUser = async (req, res) => {
+    const { name, username, email, rol, picture, password } = req.body;
+    try {
+      const userEmailFound = await User.findOne({email: email});
+      
+      if (!userEmailFound) return res.status(400).json(["Usuerio inexistente"]);
+
+      userEmailFound.name = name;
+      userEmailFound.username = username;
+      userEmailFound.email = email;
+      userEmailFound.rol = rol;
+      userEmailFound.picture = picture;
+      userEmailFound.password = await bcrypt.hash(password, 10);
+      userEmailFound.updateUser = new Date();
+
+      userEmailFound.save();
+
+      res.status(200).json(userEmailFound);
+
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    } 
+}
