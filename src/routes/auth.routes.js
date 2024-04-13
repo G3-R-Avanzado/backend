@@ -11,7 +11,7 @@ import {
 } from "../controllers/auth.controller.js";
 import {authRequired} from "../middlewares/validateToken.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
-import { registerSchema, loginSchema } from "../schemas/auth.schema.js";
+import { registerSchema, loginSchema, updateSchema } from "../schemas/auth.schema.js";
 
 const router = Router();
 
@@ -32,6 +32,6 @@ router.get("/users", getUsers);
 // router.delete("/users/:id",authRequired, deleteUser );
 router.delete("/users/:id", deleteUser );
 
-router.post("/update", validateSchema(registerSchema), updateUser);
+router.post("/update", validateSchema(updateSchema), updateUser);
 
 export default router;

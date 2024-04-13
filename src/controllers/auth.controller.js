@@ -127,7 +127,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-    const { name, username, email, rol, picture, password } = req.body;
+    const { name, username, email, rol, picture } = req.body;
     try {
       const userEmailFound = await User.findOne({email: email});
       
@@ -138,7 +138,6 @@ export const updateUser = async (req, res) => {
       userEmailFound.email = email;
       userEmailFound.rol = rol;
       userEmailFound.picture = picture;
-      userEmailFound.password = await bcrypt.hash(password, 10);
       userEmailFound.updateUser = new Date();
 
       userEmailFound.save();
