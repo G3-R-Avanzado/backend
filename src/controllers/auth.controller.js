@@ -127,7 +127,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-    const { name, username, email, rol, picture } = req.body;
+    const { name, username, email, picture } = req.body;
     try {
       const userEmailFound = await User.findOne({email: email});
       
@@ -136,7 +136,6 @@ export const updateUser = async (req, res) => {
       userEmailFound.name = name;
       userEmailFound.username = username;
       userEmailFound.email = email;
-      userEmailFound.rol = rol;
       userEmailFound.picture = picture;
       userEmailFound.updateUser = new Date();
 

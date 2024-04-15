@@ -1,5 +1,6 @@
 import Publication from "../models/publication.model.js";  
 import Category from "../models/category.model.js";
+import mongoose from "mongoose";
 
 import { Status } from "../models/status.model.js";
 import User from "../models/user.model.js";
@@ -41,7 +42,6 @@ export const updatePublication = async (req, res) => {
     try {
         const publicationUpdate = req.body;
         const publicationDB = await Publication.findById(publicationUpdate._id)
-        console.log(publicationDB);
 
         if(publicationDB) {
 
@@ -49,7 +49,18 @@ export const updatePublication = async (req, res) => {
             if(!categoryDB) return res.status(404).json("Categoria no encontrada")
             publicationDB.category = categoryDB
 
-            const statusDB = await Status.findOne({description: publicationUpdate.status})
+            let statusId;
+            try {
+              statusId = mongoose.Types.ObjectId(publicationUpdate.status);
+            } catch (error) {}
+            
+            const statusDB = await Status.findOne({
+              $or: [
+                { description: publicationUpdate.status }, 
+                { _id: statusId }
+              ]
+            });
+
             if(!statusDB) return res.status(404).json("Estado no encontrado");
             publicationDB.status = statusDB._id
         
@@ -70,12 +81,14 @@ export const updatePublication = async (req, res) => {
             res.status(404).json("publicacion no encontrada")
         }
     } catch (error) {
+        console.log(error, "error");
         res.status(404).json("Error al actualizar la publicacion");
     }
 }
 
 export const getAllPublication = async (req, res) => {
     try {
+        //const publications = await Publication.find({}).populate({path:'status', select:'description'});
         const publications = await Publication.find({});
         res.status(200).json(publications)
     } catch (error) {
