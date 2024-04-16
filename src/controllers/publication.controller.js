@@ -23,7 +23,8 @@ export const createPublication = async (req, res) => {
         if(!categoryDB) return res.status(404).json("Categoria no encontrada")
         newPublication.category = categoryDB
 
-        const statusDB = await Status.findOne({description: body.status})
+        // const statusDB = await Status.findOne({description: body.status})
+        const statusDB = await Status.findById(body.status)
         if(!statusDB) return res.status(404).json("Estado no encontrado");
         newPublication.status = statusDB._id
         
@@ -49,7 +50,12 @@ export const updatePublication = async (req, res) => {
             if(!categoryDB) return res.status(404).json("Categoria no encontrada")
             publicationDB.category = categoryDB
 
-            let statusId;
+            
+            const statusDB = await Status.findById(publicationUpdate.status)
+            if(!statusDB) return res.status(404).json("Estado no encontrado");
+            publicationDB.status = statusDB._id
+
+            /* let statusId;
             try {
               statusId = mongoose.Types.ObjectId(publicationUpdate.status);
             } catch (error) {}
@@ -59,10 +65,10 @@ export const updatePublication = async (req, res) => {
                 { description: publicationUpdate.status }, 
                 { _id: statusId }
               ]
-            });
+            }); 
 
             if(!statusDB) return res.status(404).json("Estado no encontrado");
-            publicationDB.status = statusDB._id
+            publicationDB.status = statusDB._id  */ 
         
             const userDB = await User.findById(publicationUpdate.user)
             if(!userDB) return res.status(404).json("Usuario no encontrado");
@@ -89,9 +95,13 @@ export const updatePublication = async (req, res) => {
 export const getAllPublication = async (req, res) => {
     try {
         //const publications = await Publication.find({}).populate({path:'status', select:'description'});
-        const publications = await Publication.find({});
+        const publications = await Publication.find({})
+            .populate('user', '_id name username')
+            .populate('category', '_id name')
+            .populate('status', '_id description');
         res.status(200).json(publications)
     } catch (error) {
+        console.log(error);
         res.status(404).json("Error al obtener las publicaciones");
     }
 }
@@ -105,6 +115,9 @@ export const getPublicationByStatus = async (req, res)=>{
         if(!statusDB) return res.status(404).json("Estado no encontrado");
         
         const pubication = await Publication.find({status: _id})
+            .populate('user', '_id name username')
+            .populate('category', '_id name')
+            .populate('status', '_id description');
 
         res.status(200).json(pubication)
     } catch (error) {
@@ -120,6 +133,9 @@ export const getPublicationByUser = async (req, res)=>{
         if(!userDB) return res.status(404).json("Usuario no encontrado");
         
         const pubication = await Publication.find({user: _id})
+            .populate('user', '_id name username')
+            .populate('category', '_id name')
+            .populate('status', '_id description');
 
         res.status(200).json(pubication)
     } catch (error) {
@@ -136,6 +152,9 @@ export const getPublicationFilter = async (req, res) =>{
         const limitPage = limitPageParam || 0;
 
         const publications = await Publication.find({description: {$regex: description, $options: 'i'}})
+                                                .populate('user', '_id name username')
+                                                .populate('category', '_id name')
+                                                .populate('status', '_id description')
                                                 .skip(page)
                                                 .limit(limitPage);
         res.status(200).json(publications)
